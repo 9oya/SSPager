@@ -5,6 +5,9 @@
       location = "group:Package.swift">
    </FileRef>
    <FileRef
+      location = "group:SSPager.podspec">
+   </FileRef>
+   <FileRef
       location = "group:README.md">
    </FileRef>
    <FileRef
