@@ -17,7 +17,7 @@ s.source = { :git => "https://github.com/9oya/SSPager.git",
 s.framework = "UIKit"
 
 s.source_files = "SSPager/**/*.{h,m,swift}"
-s.resources = "SSPager/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+# s.resources = "SSPager/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 s.swift_version = "5.4"
 
 end
