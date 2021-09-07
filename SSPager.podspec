@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.name = "SSPager"
     s.summary = "SSPager."
     s.requires_arc = true
-    s.version = "0.0.5"
+    s.version = "0.0.6"
 
     s.license = { :type => "MIT", :file => "LICENSE" }
     s.author = { "Eido Goya" => "eido9oya@gmail.com" }
