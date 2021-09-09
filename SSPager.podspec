@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.name = "SSPager"
     s.summary = "SSPager."
     s.requires_arc = true
-    s.version = "0.0.7"
+    s.version = "0.0.8"
 
     s.license = { :type => "MIT", :file => "LICENSE" }
     s.author = { "Eido Goya" => "eido9oya@gmail.com" }
@@ -15,14 +15,16 @@ Pod::Spec.new do |s|
                  :tag => "#{s.version}" }
 
     s.framework = "UIKit"
-
-    s.source_files = "SSPager/SSPager/SSPager/*.{h,m,swift}"
-    # s.resources = "SSPager/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
     s.swift_version = "5.4"
 
+    s.default_subspec = 'Core'
+    s.subspec 'Core' do |core|
+        core.source_files = "SSPager/SSPager/*.{h,m,swift}"
+    end
     s.subspec 'Rx' do |rx|
+        rx.dependency 'SSPager/Core', '~> 0.0.8'
         rx.dependency 'RxSwift', '~> 6'
         rx.dependency 'RxCocoa', '~> 6'
-        rx.source_files = "SSPager/SSPager/*.{h,m,swift}"
+        rx.source_files = "SSPager/RxSSPager/*.{h,m,swift}"
     end
 end
