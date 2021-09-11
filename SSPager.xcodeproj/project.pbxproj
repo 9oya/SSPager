@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B345E13E07184446882DA64 /* Pods_SSPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9664D685B140FA1E14B7534B /* Pods_SSPager.framework */; };
+		4A76958ACBAE8D8DB39176ED /* Pods_SSPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E7EA97CB8211674B3BC13E2 /* Pods_SSPager.framework */; };
 		BF7B453A26E328E0001EAD5E /* SSPager.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7B453826E328E0001EAD5E /* SSPager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF7B454126E32903001EAD5E /* SSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B454026E32903001EAD5E /* SSPagerCollectionView.swift */; };
 		BF7B454326E32914001EAD5E /* SSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B454226E32914001EAD5E /* SSPagerView.swift */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5C68D20F5D4A10EBEDF22662 /* Pods-SSPager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.debug.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.debug.xcconfig"; sourceTree = "<group>"; };
-		8EF63DE10664B28F0082A89A /* Pods-SSPager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.release.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.release.xcconfig"; sourceTree = "<group>"; };
-		9664D685B140FA1E14B7534B /* Pods_SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C87E70764383414124B349 /* Pods-SSPager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.debug.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.debug.xcconfig"; sourceTree = "<group>"; };
+		8B14A30EF7F7B63C76548874 /* Pods-SSPager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.release.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.release.xcconfig"; sourceTree = "<group>"; };
+		8E7EA97CB8211674B3BC13E2 /* Pods_SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7B453526E328E0001EAD5E /* SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7B453826E328E0001EAD5E /* SSPager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPager.h; sourceTree = "<group>"; };
 		BF7B453926E328E0001EAD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,17 +41,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B345E13E07184446882DA64 /* Pods_SSPager.framework in Frameworks */,
+				4A76958ACBAE8D8DB39176ED /* Pods_SSPager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4CCC74870F2A77AF200FFC24 /* Frameworks */ = {
+		90788B0E5E23A6F8DEED2629 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9664D685B140FA1E14B7534B /* Pods_SSPager.framework */,
+				8E7EA97CB8211674B3BC13E2 /* Pods_SSPager.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -59,8 +59,8 @@
 		AD74335730CD4ABE4DC023A6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5C68D20F5D4A10EBEDF22662 /* Pods-SSPager.debug.xcconfig */,
-				8EF63DE10664B28F0082A89A /* Pods-SSPager.release.xcconfig */,
+				21C87E70764383414124B349 /* Pods-SSPager.debug.xcconfig */,
+				8B14A30EF7F7B63C76548874 /* Pods-SSPager.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -72,7 +72,7 @@
 				BFEE609326EC96AD00885D68 /* RxSSPager */,
 				BF7B453626E328E0001EAD5E /* Products */,
 				AD74335730CD4ABE4DC023A6 /* Pods */,
-				4CCC74870F2A77AF200FFC24 /* Frameworks */,
+				90788B0E5E23A6F8DEED2629 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,7 +126,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF7B453D26E328E0001EAD5E /* Build configuration list for PBXNativeTarget "SSPager" */;
 			buildPhases = (
-				49A8D5E7565A07A43C1D4BB4 /* [CP] Check Pods Manifest.lock */,
+				158467553021FAE244485C11 /* [CP] Check Pods Manifest.lock */,
 				BF7B453026E328E0001EAD5E /* Headers */,
 				BF7B453126E328E0001EAD5E /* Sources */,
 				BF7B453226E328E0001EAD5E /* Frameworks */,
@@ -184,7 +184,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49A8D5E7565A07A43C1D4BB4 /* [CP] Check Pods Manifest.lock */ = {
+		158467553021FAE244485C11 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -351,7 +351,7 @@
 		};
 		BF7B453E26E328E0001EAD5E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C68D20F5D4A10EBEDF22662 /* Pods-SSPager.debug.xcconfig */;
+			baseConfigurationReference = 21C87E70764383414124B349 /* Pods-SSPager.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -380,7 +380,7 @@
 		};
 		BF7B453F26E328E0001EAD5E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EF63DE10664B28F0082A89A /* Pods-SSPager.release.xcconfig */;
+			baseConfigurationReference = 8B14A30EF7F7B63C76548874 /* Pods-SSPager.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;

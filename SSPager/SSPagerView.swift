@@ -21,6 +21,11 @@ public protocol SSPagerViewDelegate {
     @objc optional func pagerViewWillEndDragging(_ pagerView: SSPagerView, targetIndex: Int)
 }
 
+public enum SSPagingMode {
+    case scrollable
+    case oneStepPaging
+}
+
 public class SSPagerView: UIView {
     public var dataSource: SSPagerViewDataSource?
     public var delegate: SSPagerViewDelegate?
@@ -48,6 +53,7 @@ public class SSPagerView: UIView {
     }
     
     public var isInfinite: Bool = false
+    public var pagingMode: SSPagingMode = .oneStepPaging
     public var currentIndex: CGFloat = 0
     
     // MARK: Private properties
@@ -79,6 +85,10 @@ public class SSPagerView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         self.ssPagerCollectionView.frame = self.bounds
+    }
+    
+    public func invalidateLayout() {
+        self.ssPagerViewLayout.invalidateLayout()
     }
     
     private func commonInit() {
@@ -156,18 +166,13 @@ extension SSPagerView: UICollectionViewDelegate {
         guard let layout = self.ssPagerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
-        
         let widthPerPage = pageWidth(layout: layout)
-        
-        
         let idxOfNextPage = nextIndex(scrollView: scrollView,
                                       offset: targetContentOffset.pointee,
                                       widthPerPage: widthPerPage)
-        
         let offsetOfNextPage = nextOffset(scrollView: scrollView,
                                           idxOfNextPage: idxOfNextPage,
                                           widthPerPage: widthPerPage)
-        
         targetContentOffset.pointee = offsetOfNextPage
     }
 }
@@ -179,22 +184,27 @@ extension SSPagerView {
         return layout.itemSize.width + layout.minimumLineSpacing
     }
     
+    /// Calculate the index of the next page using the scrollView offset.
     private func nextIndex(scrollView: UIScrollView,
                            offset: CGPoint,
                            widthPerPage: CGFloat) -> CGFloat {
         
-        func makeSmoother() {
-            if scrollView.contentOffset.x > offset.x {
-                roundedIndex = (isInfinite && roundedIndex < CGFloat(numberOfItems)) ? floor(index) : roundedIndex
-            } else if scrollView.contentOffset.x < offset.x,
-                      roundedIndex != 0 {
-                roundedIndex = ceil(index)
-            } else {
-                roundedIndex = round(index)
-            }
+        let index = (offset.x + scrollView.contentInset.left) / widthPerPage
+        var roundedIndex = round(index)
+        
+        // Make scrolling smoother.
+        if scrollView.contentOffset.x > offset.x {
+            roundedIndex = (isInfinite && roundedIndex < CGFloat(numberOfItems)) ? floor(index) : roundedIndex
+        } else if scrollView.contentOffset.x < offset.x,
+                  roundedIndex != 0 {
+            roundedIndex = ceil(index)
+        } else {
+            roundedIndex = round(index)
         }
         
-        func makeOneStepPaging() {
+        // Apply paging mode.
+        switch pagingMode {
+        case .oneStepPaging:
             if currentIndex > roundedIndex {
                 currentIndex -= 1
                 roundedIndex = currentIndex
@@ -202,15 +212,14 @@ extension SSPagerView {
                 currentIndex += 1
                 roundedIndex = currentIndex
             }
+        case .scrollable:
+            break
         }
         
-        let index = (offset.x + scrollView.contentInset.left) / widthPerPage
-        var roundedIndex = round(index)
-        makeSmoother()
-        makeOneStepPaging()
         return roundedIndex
     }
     
+    /// Create a scroll offset on the next page.
     private func nextOffset(scrollView: UIScrollView,
                             idxOfNextPage: CGFloat,
                             widthPerPage: CGFloat) -> CGPoint {

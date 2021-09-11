@@ -29,6 +29,19 @@ class _RxSSPagerViewReactiveArrayDataSource: NSObject,
     
 }
 
+/// Marks data source as `UICollectionView` reactive data source enabling it to be used with one of the `bindTo` methods.
+public protocol RxSSPagerViewDataSourceType /*: UICollectionViewDataSource*/ {
+    
+    /// Type of elements that can be bound to collection view.
+    associatedtype Element
+    
+    /// New observable sequence event observed.
+    ///
+    /// - parameter pagerView: Bound pager view.
+    /// - parameter observedEvent: Event
+    func pagerView(_ pagerView: SSPagerView, observedEvent: Event<Element>)
+}
+
 class RxSSPagerViewReactiveArrayDataSourceSequenceWrapper<Sequence: Swift.Sequence>:
     RxSSPagerViewReactiveArrayDataSource<Sequence.Element>,
     RxSSPagerViewDataSourceType {
@@ -40,9 +53,9 @@ class RxSSPagerViewReactiveArrayDataSourceSequenceWrapper<Sequence: Swift.Sequen
     }
     
     func pagerView(_ pagerView: SSPagerView, observedEvent: Event<Sequence>) {
-        Binder(self) { pagerViewDataSource, sectionModels in
-            let sections = sectionModels as! Event<Sequence>
-            pagerViewDataSource.pagerView(pagerView, observedEvent: sections)
+        Binder(self) { pagerViewDataSource, sequence in
+            let elements = Array(sequence)
+            pagerViewDataSource.pagerView(pagerView, observedElements: elements)
         }.on(observedEvent)
     }
 }
@@ -73,33 +86,9 @@ class RxSSPagerViewReactiveArrayDataSource<Element>:
     
     // recative
     
-    func pagerView(_ pagerView: UICollectionView, observedElements: [Element]) {
+    func pagerView(_ pagerView: SSPagerView, observedElements: [Element]) {
         self.itemModels = observedElements
         pagerView.reloadData()
-        pagerView.collectionViewLayout.invalidateLayout()
+        pagerView.invalidateLayout()
     }
-}
-
-/// Data source with access to underlying sectioned model.
-public protocol SectionedViewDataSourceType {
-    /// Returns model at index path.
-    ///
-    /// In case data source doesn't contain any sections when this method is being called, `RxCocoaError.ItemsNotYetBound(object: self)` is thrown.
-
-    /// - parameter indexPath: Model index path
-    /// - returns: Model at index path.
-    func model(at indexPath: IndexPath) throws -> Any
-}
-
-/// Marks data source as `UICollectionView` reactive data source enabling it to be used with one of the `bindTo` methods.
-public protocol RxSSPagerViewDataSourceType /*: UICollectionViewDataSource*/ {
-    
-    /// Type of elements that can be bound to collection view.
-    associatedtype Element
-    
-    /// New observable sequence event observed.
-    ///
-    /// - parameter collectionView: Bound collection view.
-    /// - parameter observedEvent: Event
-    func pagerView(_ pagerView: SSPagerView, observedEvent: Event<Element>)
 }

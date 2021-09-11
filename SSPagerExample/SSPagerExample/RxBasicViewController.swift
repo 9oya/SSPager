@@ -10,7 +10,11 @@ import RxSwift
 import RxCocoa
 import SSPager
 
+let defaultCellId = String(describing: SSPagerViewCell.self)
+
 class RxBasicViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
     
     var pagerView: SSPagerView!
     
@@ -40,7 +44,7 @@ class RxBasicViewController: UIViewController {
 //            pagerView.isInfinite = true
             
             
-            pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
+            pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: defaultCellId)
             
 //            pagerView.dataSource = self
 //            pagerView.delegate = self
@@ -64,6 +68,17 @@ class RxBasicViewController: UIViewController {
     }
     
     func bindRx() {
+        
         Observable.just(itemColors)
+            .bind(to: pagerView.rx.pages(cellIdentifier: defaultCellId)) { idx, color, cell in
+                cell.backgroundColor = color
+            }
+            .disposed(by: disposeBag)
+        
+        pagerView.rx.pageSelected
+            .bind(onNext: { idx in
+                print("Page \(idx) is selected.")
+            })
+            .disposed(by: disposeBag)
     }
 }

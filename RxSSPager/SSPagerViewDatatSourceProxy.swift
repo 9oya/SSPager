@@ -57,6 +57,10 @@ public class RxSSPagerViewDataSourceProxy:
         (_requiredMethodsDataSource?.pagerView(pagerView, cellForItemAt: index))!
     }
     
+    public override func setForwardToDelegate(_ delegate: DelegateProxy<SSPagerView, SSPagerViewDataSource>.Delegate?, retainDelegate: Bool) {
+        _requiredMethodsDataSource = delegate ?? ssPagerViewDataSourceNotSet
+        super.setForwardToDelegate(delegate, retainDelegate: retainDelegate)
+    }
 }
 
 

@@ -78,7 +78,7 @@ public extension Reactive where Base: SSPagerView {
     var pageSelected: ControlEvent<Int> {
         let source = delegate.methodInvoked(#selector(SSPagerViewDelegate.pagerViewDidSelectPage(at:)))
             .map { a in
-                return try castOrThrow(Int.self, a[1])
+                return try castOrThrow(Int.self, a.first as Any)
             }
         
         return ControlEvent(events: source)
