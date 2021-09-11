@@ -15,7 +15,7 @@ To run the example project, clone the repo, and run `pod install` from the SSPag
 
 ### [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)
 
-InfiniteLayout is available through [CocoaPods](http://cocoapods.org). To install
+SSPager is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -111,10 +111,6 @@ SSPager provide a subspec **SSPager/Rx**
 ```ruby
 pod 'SSPager/Rx'
 ```
-
-To use InfiniteCollectionView with RxSwift without conflicts between NSProxy
-
-Use **RxInfiniteCollectionView** instead of **InfiniteCollectionView**
 
 ```swift
 @IBOutlet weak var pagerView: SSPagerView!
