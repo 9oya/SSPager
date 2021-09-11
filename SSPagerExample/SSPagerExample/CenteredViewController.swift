@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  CenteredViewController.swift
 //  SSPagerExample
 //
-//  Created by Eido Goya on 2021/09/04.
+//  Created by Eido Goya on 2021/09/12.
 //
 
 import UIKit
 import SSPager
 
-class BasicViewController: UIViewController {
+class CenteredViewController: UIViewController {
     
     var pagerView: SSPagerView!
     
@@ -24,15 +24,13 @@ class BasicViewController: UIViewController {
             
             let cellWidth = view.frame.width * 0.7
             let cellHeight = view.frame.height * 0.7
+            
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
             pagerView.contentsInset = UIEdgeInsets(top: 100,
-                                                   left: 20,
+                                                   left: (view.bounds.width - cellWidth) / 2,
                                                    bottom: 100,
-                                                   right: 20)
-            // pagerView.isInfinite = true
-            // pagerView.automaticSlidingInterval = 1.0
-            
+                                                   right: (view.bounds.width - cellWidth) / 2)
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
             
@@ -56,7 +54,7 @@ class BasicViewController: UIViewController {
     }
 }
 
-extension BasicViewController: SSPagerViewDataSource {
+extension CenteredViewController: SSPagerViewDataSource {
     func numberOfItems(_ pagerView: SSPagerView) -> Int {
         itemColors.count
     }
@@ -71,9 +69,8 @@ extension BasicViewController: SSPagerViewDataSource {
     }
 }
 
-extension BasicViewController: SSPagerViewDelegate {
+extension CenteredViewController: SSPagerViewDelegate {
     func pagerViewDidSelectPage(at index: Int) {
         print("Page selected at \(index)")
     }
 }
-

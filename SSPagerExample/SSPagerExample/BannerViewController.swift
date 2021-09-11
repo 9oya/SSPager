@@ -1,14 +1,14 @@
 //
-//  ViewController.swift
+//  BannerViewController.swift
 //  SSPagerExample
 //
-//  Created by Eido Goya on 2021/09/04.
+//  Created by Eido Goya on 2021/09/12.
 //
 
 import UIKit
 import SSPager
 
-class BasicViewController: UIViewController {
+class BannerViewController: UIViewController {
     
     var pagerView: SSPagerView!
     
@@ -19,19 +19,19 @@ class BasicViewController: UIViewController {
         
         pagerView = {
             let pagerView = SSPagerView()
-            pagerView.interitemSpacing = 20.0
+            pagerView.interitemSpacing = 0
             pagerView.backgroundColor = .systemGray5
             
-            let cellWidth = view.frame.width * 0.7
-            let cellHeight = view.frame.height * 0.7
+            let cellWidth = view.frame.width
+            let cellHeight = view.frame.height
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
-            pagerView.contentsInset = UIEdgeInsets(top: 100,
-                                                   left: 20,
-                                                   bottom: 100,
-                                                   right: 20)
-            // pagerView.isInfinite = true
-            // pagerView.automaticSlidingInterval = 1.0
+            pagerView.contentsInset = UIEdgeInsets(top: 0,
+                                                   left: 0,
+                                                   bottom: 0,
+                                                   right: 0)
+            pagerView.isInfinite = true
+            pagerView.automaticSlidingInterval = 3.0
             
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
@@ -47,16 +47,16 @@ class BasicViewController: UIViewController {
         view.addSubview(pagerView)
         
         let constraints = [
-            pagerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pagerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             pagerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             pagerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            pagerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            pagerView.heightAnchor.constraint(equalToConstant: 200)
         ]
         NSLayoutConstraint.activate(constraints)
     }
 }
 
-extension BasicViewController: SSPagerViewDataSource {
+extension BannerViewController: SSPagerViewDataSource {
     func numberOfItems(_ pagerView: SSPagerView) -> Int {
         itemColors.count
     }
@@ -71,9 +71,8 @@ extension BasicViewController: SSPagerViewDataSource {
     }
 }
 
-extension BasicViewController: SSPagerViewDelegate {
+extension BannerViewController: SSPagerViewDelegate {
     func pagerViewDidSelectPage(at index: Int) {
         print("Page selected at \(index)")
     }
 }
-

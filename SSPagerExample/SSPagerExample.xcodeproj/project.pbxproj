@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		836A74C19A131E735F191FAF /* Pods_SSPagerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B195A7C950D2AB1294715C /* Pods_SSPagerExample.framework */; };
 		BF29BA0226EC9BF7005A2509 /* SSPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF29BA0126EC9BF7005A2509 /* SSPager.framework */; };
+		BF29BA0526ED759C005A2509 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29BA0426ED759C005A2509 /* BannerViewController.swift */; };
+		BF29BA0726ED7602005A2509 /* CenteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29BA0626ED7602005A2509 /* CenteredViewController.swift */; };
 		BFEE607E26EC834500885D68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE607D26EC834500885D68 /* AppDelegate.swift */; };
 		BFEE608026EC834500885D68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE607F26EC834500885D68 /* SceneDelegate.swift */; };
 		BFEE608226EC834500885D68 /* BasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE608126EC834500885D68 /* BasicViewController.swift */; };
@@ -26,6 +28,8 @@
 		BF29B9F626EC99DC005A2509 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF29B9F726EC99DC005A2509 /* SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF29BA0126EC9BF7005A2509 /* SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF29BA0426ED759C005A2509 /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
+		BF29BA0626ED7602005A2509 /* CenteredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredViewController.swift; sourceTree = "<group>"; };
 		BFEE607A26EC834500885D68 /* SSPagerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSPagerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFEE607D26EC834500885D68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFEE607F26EC834500885D68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 				BFEE607D26EC834500885D68 /* AppDelegate.swift */,
 				BFEE607F26EC834500885D68 /* SceneDelegate.swift */,
 				BFEE608126EC834500885D68 /* BasicViewController.swift */,
+				BF29BA0626ED7602005A2509 /* CenteredViewController.swift */,
+				BF29BA0426ED759C005A2509 /* BannerViewController.swift */,
 				BFEE609126EC83F200885D68 /* RxBasicViewController.swift */,
 				BFEE608326EC834500885D68 /* Main.storyboard */,
 				BFEE608626EC834600885D68 /* Assets.xcassets */,
@@ -221,7 +227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF29BA0526ED759C005A2509 /* BannerViewController.swift in Sources */,
 				BFEE608226EC834500885D68 /* BasicViewController.swift in Sources */,
+				BF29BA0726ED7602005A2509 /* CenteredViewController.swift in Sources */,
 				BFEE609226EC83F200885D68 /* RxBasicViewController.swift in Sources */,
 				BFEE607E26EC834500885D68 /* AppDelegate.swift in Sources */,
 				BFEE608026EC834500885D68 /* SceneDelegate.swift in Sources */,

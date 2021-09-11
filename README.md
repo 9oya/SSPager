@@ -69,11 +69,19 @@ func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollecti
 ### Paging
 
 ```swift
-self.pagerView.isInfinite = true
+pagerView.interitemSpacing = 20.0
 ```
 
 ```swift
-self.pagerView.pagingMode = .oneStepPaging // .scrollable
+pagerView.isInfinite = true
+```
+
+```swift
+pagerView.automaticSlidingInterval = 2.0
+```
+
+```swift
+pagerView.pagingMode = .oneStepPaging // .scrollable
 ```
 
 ```swift
