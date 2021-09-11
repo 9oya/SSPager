@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BB7A4147CCE00889712631D /* Pods_SSPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF6A5538003A4F57D54C047 /* Pods_SSPager.framework */; };
+		444B26F5F44B28A2BD85DA86 /* Pods_RxSSPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8893C4B219938C67CF8135 /* Pods_RxSSPager.framework */; };
 		BF7B453A26E328E0001EAD5E /* SSPager.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7B453826E328E0001EAD5E /* SSPager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BF7B454126E32903001EAD5E /* SSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B454026E32903001EAD5E /* SSPagerCollectionView.swift */; };
 		BF7B454326E32914001EAD5E /* SSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B454226E32914001EAD5E /* SSPagerView.swift */; };
@@ -17,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D8893C4B219938C67CF8135 /* Pods_RxSSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54746764C1C17505FEBBB886 /* Pods-SSPager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.release.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.release.xcconfig"; sourceTree = "<group>"; };
+		9EF6A5538003A4F57D54C047 /* Pods_SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7B453526E328E0001EAD5E /* SSPager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SSPager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7B453826E328E0001EAD5E /* SSPager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSPager.h; sourceTree = "<group>"; };
 		BF7B453926E328E0001EAD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -28,6 +33,9 @@
 		BFEE602F26E742D200885D68 /* RxSSPager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxSSPager.h; sourceTree = "<group>"; };
 		BFEE603026E742D200885D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFEE603526E742E200885D68 /* SSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SSPagerView+Rx.swift"; sourceTree = "<group>"; };
+		C757AAC994392A90F8E0E7DC /* Pods-RxSSPager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSSPager.debug.xcconfig"; path = "Target Support Files/Pods-RxSSPager/Pods-RxSSPager.debug.xcconfig"; sourceTree = "<group>"; };
+		EA05EE21B0248E78A8951E8F /* Pods-RxSSPager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSSPager.release.xcconfig"; path = "Target Support Files/Pods-RxSSPager/Pods-RxSSPager.release.xcconfig"; sourceTree = "<group>"; };
+		EA6BCD808AC8C9A846E28241 /* Pods-SSPager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.debug.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BB7A4147CCE00889712631D /* Pods_SSPager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,18 +51,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444B26F5F44B28A2BD85DA86 /* Pods_RxSSPager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3934926AE7A5959C08103C95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D8893C4B219938C67CF8135 /* Pods_RxSSPager.framework */,
+				9EF6A5538003A4F57D54C047 /* Pods_SSPager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD74335730CD4ABE4DC023A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C757AAC994392A90F8E0E7DC /* Pods-RxSSPager.debug.xcconfig */,
+				EA05EE21B0248E78A8951E8F /* Pods-RxSSPager.release.xcconfig */,
+				EA6BCD808AC8C9A846E28241 /* Pods-SSPager.debug.xcconfig */,
+				54746764C1C17505FEBBB886 /* Pods-SSPager.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BF7B452B26E328E0001EAD5E = {
 			isa = PBXGroup;
 			children = (
 				BF7B453726E328E0001EAD5E /* SSPager */,
 				BFEE602E26E742D200885D68 /* RxSSPager */,
 				BF7B453626E328E0001EAD5E /* Products */,
+				AD74335730CD4ABE4DC023A6 /* Pods */,
+				3934926AE7A5959C08103C95 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +148,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF7B453D26E328E0001EAD5E /* Build configuration list for PBXNativeTarget "SSPager" */;
 			buildPhases = (
+				C28CA52D0F92B70773727001 /* [CP] Check Pods Manifest.lock */,
 				BF7B453026E328E0001EAD5E /* Headers */,
 				BF7B453126E328E0001EAD5E /* Sources */,
 				BF7B453226E328E0001EAD5E /* Frameworks */,
@@ -133,6 +167,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFEE603226E742D200885D68 /* Build configuration list for PBXNativeTarget "RxSSPager" */;
 			buildPhases = (
+				802AE540034B1348113800D2 /* [CP] Check Pods Manifest.lock */,
 				BFEE602826E742D200885D68 /* Headers */,
 				BFEE602926E742D200885D68 /* Sources */,
 				BFEE602A26E742D200885D68 /* Frameworks */,
@@ -200,6 +235,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		802AE540034B1348113800D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RxSSPager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C28CA52D0F92B70773727001 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SSPager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BF7B453126E328E0001EAD5E /* Sources */ = {
@@ -348,6 +430,7 @@
 		};
 		BF7B453E26E328E0001EAD5E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6BCD808AC8C9A846E28241 /* Pods-SSPager.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -376,6 +459,7 @@
 		};
 		BF7B453F26E328E0001EAD5E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54746764C1C17505FEBBB886 /* Pods-SSPager.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -403,6 +487,7 @@
 		};
 		BFEE603326E742D200885D68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C757AAC994392A90F8E0E7DC /* Pods-RxSSPager.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -429,6 +514,7 @@
 		};
 		BFEE603426E742D200885D68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA05EE21B0248E78A8951E8F /* Pods-RxSSPager.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

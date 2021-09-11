@@ -20,7 +20,7 @@ let package = Package(
     targets: [
         .target(
             name: "SSPager",
-            path: "SSPager/SSPager"
+            path: "SSPager"
         )
     ]
 )

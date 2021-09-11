@@ -2,18 +2,24 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Package.swift">
+      location = "group:LICENSE">
    </FileRef>
    <FileRef
-      location = "group:SSPager.podspec">
+      location = "group:Package.swift">
    </FileRef>
    <FileRef
       location = "group:README.md">
    </FileRef>
    <FileRef
-      location = "group:SSPager/SSPager.xcodeproj">
+      location = "group:SSPager.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:SSPager.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SSPagerExample/SSPagerExample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
