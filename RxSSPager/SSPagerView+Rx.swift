@@ -50,7 +50,10 @@ public extension Reactive where Base: SSPagerView {
     {
         return { source in
             _ = self.delegate
-            return source.subscribeProxyDataSource(ofObject: self.base, dataSource: dataSource, retainDataSource: true) { [weak pagerView = self.base] (_: RxSSPagerViewDataSourceProxy, event) -> Void in
+            return source.subscribeProxyDataSource(ofObject: self.base,
+                                                   dataSource: dataSource,
+                                                   retainDataSource: true)
+            { [weak pagerView = self.base] (_: RxSSPagerViewDataSourceProxy, event) -> Void in
                 guard let pagerView: SSPagerView = pagerView else { return }
                 dataSource.pagerView(pagerView, observedEvent: event)
             }
@@ -95,10 +98,14 @@ private func castOrThrow<T>(_ resultType: T.Type, _ object: Any) throws -> T {
 }
 
 extension ObservableType {
-    func subscribeProxyDataSource<DelegateProxy: DelegateProxyType>(ofObject object: DelegateProxy.ParentObject, dataSource: DelegateProxy.Delegate, retainDataSource: Bool, binding: @escaping (DelegateProxy, Event<Element>) -> Void)
-        -> Disposable
-        where DelegateProxy.ParentObject: UIView
-        , DelegateProxy.Delegate: AnyObject {
+    func subscribeProxyDataSource<DelegateProxy: DelegateProxyType>
+    (ofObject object: DelegateProxy.ParentObject,
+     dataSource: DelegateProxy.Delegate,
+     retainDataSource: Bool,
+     binding: @escaping (DelegateProxy, Event<Element>) -> Void)
+    -> Disposable where DelegateProxy.ParentObject: UIView
+                        , DelegateProxy.Delegate: AnyObject {
+        
         let proxy = DelegateProxy.proxy(for: object)
         let unregisterDelegate = DelegateProxy.installForwardDelegate(dataSource, retainDelegate: retainDataSource, onProxyForObject: object)
 
@@ -119,7 +126,8 @@ extension ObservableType {
             .subscribe { [weak object] (event: Event<Element>) in
 
                 if let object = object {
-                    assert(proxy === DelegateProxy.currentDelegate(for: object), "Proxy changed from the time it was first set.\nOriginal: \(proxy)\nExisting: \(String(describing: DelegateProxy.currentDelegate(for: object)))")
+                    assert(proxy === DelegateProxy.currentDelegate(for: object),
+                           "Proxy changed from the time it was first set.\nOriginal: \(proxy)\nExisting: \(String(describing: DelegateProxy.currentDelegate(for: object)))")
                 }
                 
                 binding(proxy, event)

@@ -30,7 +30,14 @@ public class SSPagerView: UIView {
     public var dataSource: SSPagerViewDataSource?
     public var delegate: SSPagerViewDelegate?
     
-    public var automaticSlidingInterval: CGFloat = 0.0
+    public var automaticSlidingInterval: CGFloat = 0.0 {
+        didSet {
+            self.cancelTimer()
+            if self.automaticSlidingInterval > 0 {
+                self.startTimer()
+            }
+        }
+    }
     
     public var interitemSpacing: CGFloat = 20 {
         didSet {
@@ -62,6 +69,7 @@ public class SSPagerView: UIView {
     private var numberOfItems: Int = 0
     private var numberOfSections: Int = 1
     private var dequeingSection = 0
+    private var timer: Timer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -219,6 +227,14 @@ extension SSPagerView {
         return roundedIndex
     }
     
+    /// Calculate the index of the next page using current index
+    private func nextIndex() -> CGFloat {
+        var idxOfNextPage = Int(currentIndex+1.0)
+        idxOfNextPage = isInfinite ? idxOfNextPage : idxOfNextPage % self.numberOfItems
+        currentIndex += 1
+        return CGFloat(idxOfNextPage)
+    }
+    
     /// Create a scroll offset on the next page.
     private func nextOffset(scrollView: UIScrollView,
                             idxOfNextPage: CGFloat,
@@ -226,5 +242,34 @@ extension SSPagerView {
         return CGPoint(x: (idxOfNextPage * widthPerPage) - scrollView.contentInset.left,
                        y: -scrollView.contentInset.top)
     }
+    
+    fileprivate func startTimer() {
+        guard self.automaticSlidingInterval > 0 && self.timer == nil else {
+            return
+        }
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.automaticSlidingInterval), target: self, selector: #selector(self.flipNext(sender:)), userInfo: nil, repeats: true)
+        RunLoop.current.add(self.timer!, forMode: .common)
+    }
+    
+    @objc
+    fileprivate func flipNext(sender: Timer?) {
+        guard let _ = self.superview, let _ = self.window, self.numberOfItems > 0 else {
+            return
+        }
+        let contentOffset: CGPoint = {
+            return nextOffset(scrollView: ssPagerCollectionView,
+                              idxOfNextPage: nextIndex(),
+                              widthPerPage: pageWidth(layout: ssPagerViewLayout))
+        }()
+        self.ssPagerCollectionView.setContentOffset(contentOffset, animated: true)
+    }
+    
+    fileprivate func cancelTimer() {
+        guard self.timer != nil else {
+            return
+        }
+        self.timer!.invalidate()
+        self.timer = nil
+    }
+    
 }
-

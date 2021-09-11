@@ -83,7 +83,6 @@ class RxSSPagerViewReactiveArrayDataSource<Element>:
         cellFactory(pagerView, index, itemModels![index])
     }
     
-    
     // recative
     
     func pagerView(_ pagerView: SSPagerView, observedElements: [Element]) {

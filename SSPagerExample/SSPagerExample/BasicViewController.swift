@@ -27,15 +27,16 @@ class BasicViewController: UIViewController {
             
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
-//            pagerView.contentsInset = UIEdgeInsets(top: 100,
-//                                                   left: (view.bounds.width - cellWidth) / 2,
-//                                                   bottom: 100,
-//                                                   right: (view.bounds.width - cellWidth) / 2)
             pagerView.contentsInset = UIEdgeInsets(top: 100,
-                                                   left: 20,
+                                                   left: (view.bounds.width - cellWidth) / 2,
                                                    bottom: 100,
-                                                   right: 20)
-//            pagerView.isInfinite = true
+                                                   right: (view.bounds.width - cellWidth) / 2)
+//            pagerView.contentsInset = UIEdgeInsets(top: 100,
+//                                                   left: 20,
+//                                                   bottom: 100,
+//                                                   right: 20)
+            pagerView.isInfinite = true
+            pagerView.automaticSlidingInterval = 1.0
             
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))

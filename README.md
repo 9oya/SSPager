@@ -133,7 +133,8 @@ pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(desc
 // let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue]
 
 Observable.just(itemColors)
-    .bind(to: pagerView.rx.pages(cellIdentifier: defaultCellId)) { idx, color, cell in
+    .bind(to: pagerView.rx.pages(cellIdentifier: defaultCellId)) 
+    { idx, color, cell in
         cell.backgroundColor = color
     }
     .disposed(by: disposeBag)
