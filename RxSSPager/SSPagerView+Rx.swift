@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SSPager
 
 public extension Reactive where Base: SSPagerView {
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import SSPager
 
 class _RxSSPagerViewReactiveArrayDataSource: NSObject,
                                              SSPagerViewDataSource {
