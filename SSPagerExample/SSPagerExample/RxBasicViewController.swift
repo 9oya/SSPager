@@ -6,10 +6,9 @@
 //
 
 import UIKit
-//import RxSwift
-//import RxCocoa
+import RxSwift
+import RxCocoa
 import SSPager
-import RxSSPager
 
 class RxBasicViewController: UIViewController {
     
@@ -46,9 +45,6 @@ class RxBasicViewController: UIViewController {
 //            pagerView.dataSource = self
 //            pagerView.delegate = self
             
-            
-            
-            
             pagerView.translatesAutoresizingMaskIntoConstraints = false
             
             return pagerView
@@ -63,5 +59,11 @@ class RxBasicViewController: UIViewController {
             pagerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
+        
+        bindRx()
+    }
+    
+    func bindRx() {
+        Observable.just(itemColors)
     }
 }

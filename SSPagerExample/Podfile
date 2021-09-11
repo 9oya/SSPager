@@ -6,6 +6,6 @@ target 'SSPagerExample' do
   use_frameworks!
 
   # Pods for SSPagerExample
-  pod 'SSPager/Rx', '~> 0.0.9'
+  pod 'SSPager/Rx', '~> 0.0.11'
 
 end

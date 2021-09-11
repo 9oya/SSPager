@@ -14,10 +14,10 @@
       location = "group:SSPager.podspec">
    </FileRef>
    <FileRef
-      location = "group:SSPagerExample/SSPagerExample.xcodeproj">
+      location = "group:SSPager.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:SSPager.xcodeproj">
+      location = "group:SSPagerExample/SSPagerExample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
