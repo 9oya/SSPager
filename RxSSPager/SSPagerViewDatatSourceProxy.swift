@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import SSPager
 
 extension SSPagerView: HasDataSource {
     public typealias DataSource = SSPagerViewDataSource
