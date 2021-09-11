@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  SSPagerExample
 //
-//  Created by Eido Goya on 2021/09/04.
+//  Created by Eido Goya on 2021/09/11.
 //
 
 import UIKit

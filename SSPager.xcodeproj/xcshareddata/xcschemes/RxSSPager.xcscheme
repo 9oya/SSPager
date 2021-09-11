@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BFEE607926EC834500885D68"
-               BuildableName = "SSPagerExample.app"
-               BlueprintName = "SSPagerExample"
-               ReferencedContainer = "container:SSPagerExample.xcodeproj">
+               BlueprintIdentifier = "BFEE602C26E742D200885D68"
+               BuildableName = "RxSSPager.framework"
+               BlueprintName = "RxSSPager"
+               ReferencedContainer = "container:SSPager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,16 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFEE607926EC834500885D68"
-            BuildableName = "SSPagerExample.app"
-            BlueprintName = "SSPagerExample"
-            ReferencedContainer = "container:SSPagerExample.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFEE607926EC834500885D68"
-            BuildableName = "SSPagerExample.app"
-            BlueprintName = "SSPagerExample"
-            ReferencedContainer = "container:SSPagerExample.xcodeproj">
+            BlueprintIdentifier = "BFEE602C26E742D200885D68"
+            BuildableName = "RxSSPager.framework"
+            BlueprintName = "RxSSPager"
+            ReferencedContainer = "container:SSPager.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

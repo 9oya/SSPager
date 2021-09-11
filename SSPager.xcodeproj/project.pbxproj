@@ -16,6 +16,9 @@
 		BF7B454726E32927001EAD5E /* SSPagerViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B454626E32927001EAD5E /* SSPagerViewLayout.swift */; };
 		BFEE603126E742D200885D68 /* RxSSPager.h in Headers */ = {isa = PBXBuildFile; fileRef = BFEE602F26E742D200885D68 /* RxSSPager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFEE603626E742E200885D68 /* SSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE603526E742E200885D68 /* SSPagerView+Rx.swift */; };
+		BFEE605F26EC40AB00885D68 /* SSPagerViewDatatSourceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE605E26EC40AB00885D68 /* SSPagerViewDatatSourceProxy.swift */; };
+		BFEE606126EC45CC00885D68 /* SSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE606026EC45CC00885D68 /* SSPagerViewDelegateProxy.swift */; };
+		BFEE606326EC486F00885D68 /* RxSSPagerViewReactiveArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE606226EC486F00885D68 /* RxSSPagerViewReactiveArrayDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		BFEE602F26E742D200885D68 /* RxSSPager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxSSPager.h; sourceTree = "<group>"; };
 		BFEE603026E742D200885D68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFEE603526E742E200885D68 /* SSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SSPagerView+Rx.swift"; sourceTree = "<group>"; };
+		BFEE605E26EC40AB00885D68 /* SSPagerViewDatatSourceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSPagerViewDatatSourceProxy.swift; sourceTree = "<group>"; };
+		BFEE606026EC45CC00885D68 /* SSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
+		BFEE606226EC486F00885D68 /* RxSSPagerViewReactiveArrayDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSSPagerViewReactiveArrayDataSource.swift; sourceTree = "<group>"; };
 		C757AAC994392A90F8E0E7DC /* Pods-RxSSPager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSSPager.debug.xcconfig"; path = "Target Support Files/Pods-RxSSPager/Pods-RxSSPager.debug.xcconfig"; sourceTree = "<group>"; };
 		EA05EE21B0248E78A8951E8F /* Pods-RxSSPager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSSPager.release.xcconfig"; path = "Target Support Files/Pods-RxSSPager/Pods-RxSSPager.release.xcconfig"; sourceTree = "<group>"; };
 		EA6BCD808AC8C9A846E28241 /* Pods-SSPager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPager.debug.xcconfig"; path = "Target Support Files/Pods-SSPager/Pods-SSPager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,7 +81,6 @@
 				EA6BCD808AC8C9A846E28241 /* Pods-SSPager.debug.xcconfig */,
 				54746764C1C17505FEBBB886 /* Pods-SSPager.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -117,6 +122,9 @@
 			children = (
 				BFEE602F26E742D200885D68 /* RxSSPager.h */,
 				BFEE603526E742E200885D68 /* SSPagerView+Rx.swift */,
+				BFEE605E26EC40AB00885D68 /* SSPagerViewDatatSourceProxy.swift */,
+				BFEE606026EC45CC00885D68 /* SSPagerViewDelegateProxy.swift */,
+				BFEE606226EC486F00885D68 /* RxSSPagerViewReactiveArrayDataSource.swift */,
 				BFEE603026E742D200885D68 /* Info.plist */,
 			);
 			path = RxSSPager;
@@ -299,7 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFEE606326EC486F00885D68 /* RxSSPagerViewReactiveArrayDataSource.swift in Sources */,
 				BFEE603626E742E200885D68 /* SSPagerView+Rx.swift in Sources */,
+				BFEE605F26EC40AB00885D68 /* SSPagerViewDatatSourceProxy.swift in Sources */,
+				BFEE606126EC45CC00885D68 /* SSPagerViewDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +509,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RxSSPager/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -525,6 +537,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = RxSSPager/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

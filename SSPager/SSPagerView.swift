@@ -9,7 +9,7 @@ import UIKit
 
 @objc
 public protocol SSPagerViewDataSource {
-    func numberOfItems(in pagerView: SSPagerView) -> Int
+    func numberOfItems(_ pagerView: SSPagerView) -> Int
     
     func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell
 }
@@ -128,7 +128,7 @@ extension SSPagerView: UICollectionViewDataSource {
         guard let dataSource = self.dataSource else {
             return 1
         }
-        numberOfItems = dataSource.numberOfItems(in: self)
+        numberOfItems = dataSource.numberOfItems(self)
         guard numberOfItems > 0 else {
             return 0
         }
