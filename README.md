@@ -1,6 +1,6 @@
 # SSPager
 
-[![Languages](https://img.shields.io/badge/language-swift%205.4-FF69B4.svg?style=plastic)](#) 
+[![Languages](https://img.shields.io/badge/language-swift%205.0-FF69B4.svg?style=plastic)](#) 
 [![Platform](https://img.shields.io/badge/platform-iOS%20-blue.svg?style=plastic)](https://github.com/9oya/SSPager)
 [![Version](https://img.shields.io/cocoapods/v/SSPager.svg?style=plastic)](https://github.com/9oya/SSPager)
 [![SPM compatible](https://img.shields.io/badge/SPM-compatible-FF9966.svg?style=plastic)](https://swift.org/package-manager/)

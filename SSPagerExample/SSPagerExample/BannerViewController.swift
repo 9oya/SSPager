@@ -11,8 +11,8 @@ import SSPager
 class BannerViewController: UIViewController {
     
     var pagerView: SSPagerView!
-    
     let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue]
+    let cellHeight: CGFloat = 200
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,7 @@ class BannerViewController: UIViewController {
             pagerView.interitemSpacing = 0
             pagerView.backgroundColor = .systemGray5
             
-            let cellWidth = view.frame.width
-            let cellHeight = view.frame.height
-            pagerView.itemSize = CGSize(width: cellWidth,
+            pagerView.itemSize = CGSize(width: view.frame.width,
                                         height: cellHeight)
             pagerView.contentsInset = UIEdgeInsets(top: 0,
                                                    left: 0,
@@ -32,7 +30,6 @@ class BannerViewController: UIViewController {
                                                    right: 0)
             pagerView.isInfinite = true
             pagerView.automaticSlidingInterval = 3.0
-            
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
             
@@ -50,13 +47,16 @@ class BannerViewController: UIViewController {
             pagerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             pagerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             pagerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            pagerView.heightAnchor.constraint(equalToConstant: 200)
+            pagerView.heightAnchor.constraint(equalToConstant: cellHeight)
         ]
         NSLayoutConstraint.activate(constraints)
     }
 }
 
 extension BannerViewController: SSPagerViewDataSource {
+    
+    // MARK: SSPagerViewDataSource
+    
     func numberOfItems(_ pagerView: SSPagerView) -> Int {
         itemColors.count
     }
@@ -72,7 +72,10 @@ extension BannerViewController: SSPagerViewDataSource {
 }
 
 extension BannerViewController: SSPagerViewDelegate {
+    
+    // MARK: SSPagerViewDelegate
+    
     func pagerViewDidSelectPage(at index: Int) {
-        print("Page selected at \(index)")
+        print("Page \(index) is selected.")
     }
 }

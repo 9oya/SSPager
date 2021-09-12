@@ -11,8 +11,10 @@ import SSPager
 class BasicViewController: UIViewController {
     
     var pagerView: SSPagerView!
+    var pageControl: UIPageControl!
+    let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.gray, UIColor.gray, UIColor.gray, UIColor.gray]
     
-    let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue]
+    let cellHeight: CGFloat = 300
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +25,15 @@ class BasicViewController: UIViewController {
             pagerView.backgroundColor = .systemGray5
             
             let cellWidth = view.frame.width * 0.7
-            let cellHeight = view.frame.height * 0.7
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
-            pagerView.contentsInset = UIEdgeInsets(top: 100,
+            pagerView.contentsInset = UIEdgeInsets(top: 10,
                                                    left: 20,
-                                                   bottom: 100,
+                                                   bottom: 10,
                                                    right: 20)
-            // pagerView.isInfinite = true
+             pagerView.isInfinite = true
             // pagerView.automaticSlidingInterval = 1.0
-            
+            pagerView.pagingMode = .scrollable
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
             
@@ -44,19 +45,41 @@ class BasicViewController: UIViewController {
             return pagerView
         }()
         
+        pageControl = {
+            let pageControl = UIPageControl(frame: .zero)
+            pageControl.numberOfPages = itemColors.count
+            pageControl.currentPage = 0
+            pageControl.isUserInteractionEnabled = false
+            pageControl.translatesAutoresizingMaskIntoConstraints = false
+            return pageControl
+        }()
+        
         view.addSubview(pagerView)
+        view.addSubview(pageControl)
         
         let constraints = [
-            pagerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pagerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             pagerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            pagerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            pagerView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            pagerView.heightAnchor.constraint(equalToConstant: cellHeight+20)
+        ] + [
+            pageControl.centerXAnchor.constraint(equalTo: pagerView.centerXAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: pagerView.bottomAnchor, constant: -20)
         ]
         NSLayoutConstraint.activate(constraints)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        pagerView.scrollToPage(at: 3, animated: true)
+    }
+    
 }
 
 extension BasicViewController: SSPagerViewDataSource {
+    
+    // MARK: SSPagerViewDataSource
+    
     func numberOfItems(_ pagerView: SSPagerView) -> Int {
         itemColors.count
     }
@@ -72,8 +95,16 @@ extension BasicViewController: SSPagerViewDataSource {
 }
 
 extension BasicViewController: SSPagerViewDelegate {
+    
+    // MARK: SSPagerViewDelegate
+    
     func pagerViewDidSelectPage(at index: Int) {
-        print("Page selected at \(index)")
+        print("Page \(index) is selected.")
     }
+    
+    func pagerViewWillEndDragging(_ scrollView: UIScrollView, targetIndex: Int) {
+        pageControl.currentPage = Int(targetIndex % itemColors.count)
+    }
+    
 }
 

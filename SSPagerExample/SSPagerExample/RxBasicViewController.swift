@@ -15,9 +15,7 @@ let defaultCellId = String(describing: SSPagerViewCell.self)
 class RxBasicViewController: UIViewController {
     
     let disposeBag = DisposeBag()
-    
     var pagerView: SSPagerView!
-    
     let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue]
     
     override func viewDidLoad() {
@@ -30,7 +28,6 @@ class RxBasicViewController: UIViewController {
             
             let cellWidth = view.frame.width * 0.7
             let cellHeight = view.frame.height * 0.7
-            
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
             pagerView.contentsInset = UIEdgeInsets(top: 100,
@@ -39,6 +36,9 @@ class RxBasicViewController: UIViewController {
                                                    right: (view.bounds.width - cellWidth) / 2)
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: defaultCellId)
+            
+            // pagerView.dataSource = self
+            // pagerView.delegate = self
             
             pagerView.translatesAutoresizingMaskIntoConstraints = false
             
@@ -56,10 +56,10 @@ class RxBasicViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
         
         bindRx()
+        
     }
     
     func bindRx() {
-        
         Observable.just(itemColors)
             .bind(to: pagerView.rx.pages(cellIdentifier: defaultCellId)) { idx, color, cell in
                 cell.backgroundColor = color
@@ -72,4 +72,5 @@ class RxBasicViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
 }

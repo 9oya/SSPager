@@ -11,7 +11,6 @@ import SSPager
 class CenteredViewController: UIViewController {
     
     var pagerView: SSPagerView!
-    
     let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue]
 
     override func viewDidLoad() {
@@ -24,7 +23,6 @@ class CenteredViewController: UIViewController {
             
             let cellWidth = view.frame.width * 0.7
             let cellHeight = view.frame.height * 0.7
-            
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
             pagerView.contentsInset = UIEdgeInsets(top: 100,
@@ -55,6 +53,9 @@ class CenteredViewController: UIViewController {
 }
 
 extension CenteredViewController: SSPagerViewDataSource {
+    
+    // MARK: SSPagerViewDataSource
+    
     func numberOfItems(_ pagerView: SSPagerView) -> Int {
         itemColors.count
     }
@@ -70,7 +71,10 @@ extension CenteredViewController: SSPagerViewDataSource {
 }
 
 extension CenteredViewController: SSPagerViewDelegate {
+    
+    // MARK: SSPagerViewDelegate
+    
     func pagerViewDidSelectPage(at index: Int) {
-        print("Page selected at \(index)")
+        print("Page \(index) is selected.")
     }
 }

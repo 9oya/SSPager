@@ -18,7 +18,7 @@ public protocol SSPagerViewDataSource {
 public protocol SSPagerViewDelegate {
     @objc optional func pagerViewDidSelectPage(at index: Int)
     
-    @objc optional func pagerViewWillEndDragging(_ pagerView: SSPagerView, targetIndex: Int)
+    @objc optional func pagerViewWillEndDragging(_ scrollView: UIScrollView, targetIndex: Int)
 }
 
 public enum SSPagingMode {
@@ -118,6 +118,9 @@ public class SSPagerView: UIView {
 }
 
 extension SSPagerView {
+    
+    // MARK: Public methods
+    
     public func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
         self.ssPagerCollectionView.register(cellClass, forCellWithReuseIdentifier: identifier)
     }
@@ -126,7 +129,7 @@ extension SSPagerView {
         self.ssPagerCollectionView.register(nib, forCellWithReuseIdentifier: identifier)
     }
     
-    open func dequeueReusableCell(withReuseIdentifier identifier: String, at index: Int) -> UICollectionViewCell {
+    public func dequeueReusableCell(withReuseIdentifier identifier: String, at index: Int) -> UICollectionViewCell {
         let indexPath = IndexPath(item: index, section: self.dequeingSection)
         let cell = self.ssPagerCollectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         guard cell.isKind(of: UICollectionViewCell.self) else {
@@ -135,12 +138,27 @@ extension SSPagerView {
         return cell
     }
     
-    open func reloadData() {
+    public func reloadData() {
         self.ssPagerCollectionView.reloadData()
     }
+    
+    public func scrollToPage(at index: Int, animated: Bool) {
+        let currIdx = Int(currentIndex)
+        let idxOfNextPage = currIdx<index ? currIdx+index : currIdx-index
+        let nextOffset = nextOffset(scrollView: ssPagerCollectionView,
+                                    idxOfNextPage: CGFloat(idxOfNextPage),
+                                    widthPerPage: pageWidth(layout: ssPagerViewLayout))
+        
+        ssPagerCollectionView.setContentOffset(nextOffset, animated: animated)
+        
+        delegate?.pagerViewWillEndDragging?(ssPagerCollectionView, targetIndex: idxOfNextPage)
+    }
+    
 }
 
 extension SSPagerView: UICollectionViewDataSource {
+    
+    // MARK: UICollectionViewDataSource
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let dataSource = self.dataSource else {
@@ -166,6 +184,9 @@ extension SSPagerView: UICollectionViewDataSource {
 }
 
 extension SSPagerView: UICollectionViewDelegate {
+    
+    // MARK: UICollectionViewDelegate
+    
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.pagerViewDidSelectPage?(at: indexPath.item % numberOfItems)
     }
@@ -182,10 +203,14 @@ extension SSPagerView: UICollectionViewDelegate {
                                           idxOfNextPage: idxOfNextPage,
                                           widthPerPage: widthPerPage)
         targetContentOffset.pointee = offsetOfNextPage
+        
+        delegate?.pagerViewWillEndDragging?(scrollView, targetIndex: Int(idxOfNextPage))
     }
 }
 
 extension SSPagerView {
+    
+    // MARK: Private methods
     
     /// Calculate the page size using the item size and minimumLineSpacing.
     private func pageWidth(layout: UICollectionViewFlowLayout) -> CGFloat {
