@@ -85,6 +85,10 @@ pagerView.pagingMode = .oneStepPaging // .scrollable
 ```
 
 ```swift
+public func scrollToPage(at index: Int, animated: Bool)
+```
+
+```swift
 let cellWidth = view.frame.width * 0.7
 let cellHeight = view.frame.height * 0.7  
 pagerView.itemSize = CGSize(width: cellWidth,
@@ -110,7 +114,7 @@ pagerView.contentsInset = UIEdgeInsets(top: 100,
 ```swift
 func pagerViewDidSelectPage(at index: Int)
 
-func pagerViewWillEndDragging(_ pagerView: SSPagerView, targetIndex: Int)
+func pagerViewWillEndDragging(_ scrollView: UIScrollView, targetIndex: Int)
 ```
 
 ### Rx
