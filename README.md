@@ -19,7 +19,7 @@ SSPager is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'SSPager'
+pod 'SSPager', '~> 1.0.0'
 ```
 
 
@@ -108,7 +108,7 @@ pagerView.contentsInset = UIEdgeInsets(top: 100,
 ### Control
 
 ```swift
-public func scrollToPage(at index: Int, animated: Bool)
+func scrollToPage(at index: Int, animated: Bool)
 ```
 
 ### Delegate
