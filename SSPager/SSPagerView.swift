@@ -172,7 +172,8 @@ extension SSPagerView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isInfinite ? Int.max : numberOfItems
+        /// `return isInfinite ? Int.max : numberOfItems` is buggable at lowwer version of the iOS 14.5
+        return isInfinite ? 9*100000 : numberOfItems
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
