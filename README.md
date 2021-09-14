@@ -123,7 +123,7 @@ func pagerViewWillEndDragging(_ scrollView: UIScrollView, targetIndex: Int)
 
 SSPager provide a subspec **SSPager/Rx**
 ```ruby
-pod 'SSPager/Rx'
+pod 'SSPager/Rx', '~> 1.0.0'
 ```
 
 ```swift
