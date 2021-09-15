@@ -199,6 +199,7 @@ extension SSPagerView: UICollectionViewDelegate {
         let widthPerPage = pageWidth(layout: layout)
         let idxOfNextPage = nextIndex(scrollView: scrollView,
                                       offset: targetContentOffset.pointee,
+                                      velocity: velocity,
                                       widthPerPage: widthPerPage)
         let offsetOfNextPage = nextOffset(scrollView: scrollView,
                                           idxOfNextPage: idxOfNextPage,
@@ -221,19 +222,20 @@ extension SSPagerView {
     /// Calculate the index of the next page using the scrollView offset.
     private func nextIndex(scrollView: UIScrollView,
                            offset: CGPoint,
+                           velocity: CGPoint,
                            widthPerPage: CGFloat) -> CGFloat {
-        
-        let index = (offset.x + scrollView.contentInset.left) / widthPerPage
+        let contentOffset = scrollView.contentOffset
+        let contentInset = scrollView.contentInset
+        let index = (offset.x + contentInset.left) / widthPerPage
         var roundedIndex = round(index)
         
         // Make scrolling smoother.
-        if scrollView.contentOffset.x > offset.x {
-            roundedIndex = (isInfinite && roundedIndex < CGFloat(numberOfItems)) ? floor(index) : roundedIndex
-        } else if scrollView.contentOffset.x < offset.x,
-                  roundedIndex != 0 {
+        if (contentOffset.x > offset.x) && velocity.x < 0 {
+            // Scroll to previous <-
+            roundedIndex = floor(index)
+        } else if (contentOffset.x < offset.x) && velocity.x > 0 {
+            // Scroll to next ->
             roundedIndex = ceil(index)
-        } else {
-            roundedIndex = round(index)
         }
         
         // Apply paging mode.

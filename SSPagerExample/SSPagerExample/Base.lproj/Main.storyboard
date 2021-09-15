@@ -1,27 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FSo-we-3xQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Basic View Controller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="BasicViewController" customModule="SSPagerExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SSPagerExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYW-wa-9sL">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xVW-O4-Szq">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="433.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stX-QP-Rf8">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="193.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlH-OO-DIM">
+                                                <rect key="frame" x="0.0" y="213.5" width="414" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <state key="normal" title="Basic"/>
+                                                <connections>
+                                                    <action selector="basicButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BAZ-bl-vTv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOL-Fo-X5v">
+                                                <rect key="frame" x="0.0" y="273.5" width="414" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <state key="normal" title="Centered"/>
+                                                <connections>
+                                                    <action selector="centeredButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="41N-uV-tIf"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auf-Tt-XgH">
+                                                <rect key="frame" x="171.5" y="333.5" width="71" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <state key="normal" title="Banner"/>
+                                                <connections>
+                                                    <action selector="bannerButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r91-mv-9Qh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTM-OE-nN7">
+                                                <rect key="frame" x="160" y="393.5" width="94" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <state key="normal" title="Basic+Rx"/>
+                                                <connections>
+                                                    <action selector="basicRxButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qu3-zI-Av9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="NOL-Fo-X5v" firstAttribute="width" secondItem="BlH-OO-DIM" secondAttribute="width" id="y3p-J8-UMU"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xVW-O4-Szq" firstAttribute="leading" secondItem="VYW-wa-9sL" secondAttribute="leading" id="BGd-Ra-hDS"/>
+                                    <constraint firstAttribute="trailing" secondItem="xVW-O4-Szq" secondAttribute="trailing" id="EFa-tm-Kti"/>
+                                    <constraint firstAttribute="bottom" secondItem="xVW-O4-Szq" secondAttribute="bottom" id="brV-vn-sgJ"/>
+                                    <constraint firstItem="xVW-O4-Szq" firstAttribute="top" secondItem="VYW-wa-9sL" secondAttribute="top" id="e2S-UQ-ysY"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="FUq-bh-fzZ"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="7BR-sC-X3s"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="stX-QP-Rf8" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.25" id="0Ga-3D-Guy"/>
+                            <constraint firstItem="VYW-wa-9sL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2Gw-fK-fkC"/>
+                            <constraint firstItem="VYW-wa-9sL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="47h-dx-auk"/>
+                            <constraint firstItem="VYW-wa-9sL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lpb-iS-DHA"/>
+                            <constraint firstAttribute="bottom" secondItem="VYW-wa-9sL" secondAttribute="bottom" id="Nln-Eh-Fpd"/>
+                            <constraint firstItem="BlH-OO-DIM" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="RKp-hS-Ezz"/>
+                            <constraint firstItem="stX-QP-Rf8" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="lzw-aj-luf"/>
+                            <constraint firstItem="xVW-O4-Szq" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="x39-pU-xBU"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="LY7-oA-pPt"/>
+                    <connections>
+                        <outlet property="BannerButton" destination="auf-Tt-XgH" id="0v1-6f-Y0w"/>
+                        <outlet property="BasicButton" destination="BlH-OO-DIM" id="lJO-Rm-aXr"/>
+                        <outlet property="BasicRxButton" destination="HTM-OE-nN7" id="qTK-rn-Pcn"/>
+                        <outlet property="CenteredButton" destination="NOL-Fo-X5v" id="U5J-tO-cOb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="95"/>
+            <point key="canvasLocation" x="1042.0289855072465" y="94.419642857142847"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HF4-Gc-WlE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FSo-we-3xQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rke-b1-kOE">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EHr-F9-c9Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uR1-EI-23Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="94.419642857142847"/>
         </scene>
     </scenes>
     <resources>

@@ -62,7 +62,8 @@ class BasicViewController: UIViewController {
             pagerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             pagerView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             pagerView.heightAnchor.constraint(equalToConstant: cellHeight+20)
-        ] + [
+        ]
+        + [
             pageControl.centerXAnchor.constraint(equalTo: pagerView.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: pagerView.bottomAnchor, constant: -20)
         ]
@@ -71,7 +72,7 @@ class BasicViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        pagerView.scrollToPage(at: 3, animated: true)
+//        pagerView.scrollToPage(at: 3, animated: true)
     }
     
 }

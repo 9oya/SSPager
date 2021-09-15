@@ -20,6 +20,7 @@ class CenteredViewController: UIViewController {
             let pagerView = SSPagerView()
             pagerView.interitemSpacing = 20.0
             pagerView.backgroundColor = .systemGray5
+            pagerView.pagingMode = .scrollable
             
             let cellWidth = view.frame.width * 0.7
             let cellHeight = view.frame.height * 0.7

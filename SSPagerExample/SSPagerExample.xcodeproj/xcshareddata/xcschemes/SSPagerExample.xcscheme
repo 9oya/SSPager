@@ -20,6 +20,20 @@
                ReferencedContainer = "container:SSPagerExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BF7B453426E328E0001EAD5E"
+               BuildableName = "SSPager.framework"
+               BlueprintName = "SSPager"
+               ReferencedContainer = "container:../SSPager.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
