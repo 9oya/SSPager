@@ -28,8 +28,6 @@ pod 'SSPager', '~> 1.0.0'
 Create a `Package.swift` file.
 
 ```swift
-// swift-tools-version:5.4
-
 import PackageDescription
 
 let package = Package(
@@ -123,7 +121,7 @@ func pagerViewWillEndDragging(_ scrollView: UIScrollView, targetIndex: Int)
 
 SSPager provide a subspec **SSPager/Rx**
 ```ruby
-pod 'SSPager/Rx'
+pod 'SSPager/Rx', '~> 1.0.0'
 ```
 
 ```swift
