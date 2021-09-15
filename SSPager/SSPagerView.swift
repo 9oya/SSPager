@@ -172,7 +172,7 @@ extension SSPagerView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        /// `return isInfinite ? Int.max : numberOfItems` is buggable at lowwer version of the iOS 14.5
+        /// If the iOS version is lower than 14.5`return Int.max` is buggy
         return isInfinite ? 9*100000 : numberOfItems
     }
     
@@ -192,6 +192,10 @@ extension SSPagerView: UICollectionViewDelegate {
         delegate?.pagerViewDidSelectPage?(at: indexPath.item % numberOfItems)
     }
     
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelTimer()
+    }
+    
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard let layout = self.ssPagerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
@@ -207,6 +211,12 @@ extension SSPagerView: UICollectionViewDelegate {
         targetContentOffset.pointee = offsetOfNextPage
         
         delegate?.pagerViewWillEndDragging?(scrollView, targetIndex: Int(idxOfNextPage))
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if timer == nil {
+            startTimer()
+        }
     }
 }
 
