@@ -39,9 +39,10 @@ public class SSPagerView: UIView {
         }
     }
     
-    public var interitemSpacing: CGFloat = 20 {
+    public var interitemSpacing: CGFloat = 0 {
         didSet {
             self.ssPagerViewLayout.minimumInteritemSpacing = interitemSpacing
+            self.ssPagerViewLayout.minimumLineSpacing = interitemSpacing
             self.ssPagerViewLayout.invalidateLayout()
         }
     }
@@ -281,17 +282,23 @@ extension SSPagerView {
                        y: -scrollView.contentInset.top)
     }
     
-    fileprivate func startTimer() {
+    private func startTimer() {
         guard self.automaticSlidingInterval > 0 && self.timer == nil else {
             return
         }
-        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.automaticSlidingInterval), target: self, selector: #selector(self.flipNext(sender:)), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.automaticSlidingInterval),
+                                          target: self,
+                                          selector: #selector(self.flipNext(sender:)),
+                                          userInfo: nil,
+                                          repeats: true)
         RunLoop.current.add(self.timer!, forMode: .common)
     }
     
     @objc
-    fileprivate func flipNext(sender: Timer?) {
-        guard let _ = self.superview, let _ = self.window, self.numberOfItems > 0 else {
+    private func flipNext(sender: Timer?) {
+        guard let _ = self.superview,
+              let _ = self.window,
+              self.numberOfItems > 0 else {
             return
         }
         let contentOffset: CGPoint = {
@@ -302,7 +309,7 @@ extension SSPagerView {
         self.ssPagerCollectionView.setContentOffset(contentOffset, animated: true)
     }
     
-    fileprivate func cancelTimer() {
+    private func cancelTimer() {
         guard self.timer != nil else {
             return
         }

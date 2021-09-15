@@ -7,14 +7,38 @@
 
 import UIKit
 
+public enum PagerViewCellShadow {
+    case none
+    case `default`
+    case custom(shadowRadius: CGFloat,
+                opacity: CGFloat,
+                offset: CGSize)
+}
+
 public class SSPagerViewCell: UICollectionViewCell {
+    
+    public var shadowType: PagerViewCellShadow = .none {
+        didSet {
+            switch shadowType {
+            case .none:
+                break
+            case .default:
+                layer.shadowRadius = 10
+                layer.shadowOpacity = 0.4
+                layer.shadowOffset = CGSize(width: 5, height: 10)
+            case let .custom(shadowRadius,
+                             opacity,
+                             offset):
+                layer.shadowRadius = shadowRadius
+                layer.shadowOpacity = Float(opacity)
+                layer.shadowOffset = offset
+            }
+        }
+    }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = 3.0
-        layer.shadowRadius = 10
-        layer.shadowOpacity = 0.4
-        layer.shadowOffset = CGSize(width: 5, height: 10)
         self.clipsToBounds = false
     }
+    
 }

@@ -28,9 +28,9 @@ class BasicViewController: UIViewController {
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
             pagerView.contentsInset = UIEdgeInsets(top: 10,
-                                                   left: 20,
+                                                   left: 40,
                                                    bottom: 10,
-                                                   right: 20)
+                                                   right: 0)
              pagerView.isInfinite = true
             // pagerView.automaticSlidingInterval = 1.0
             pagerView.pagingMode = .scrollable
