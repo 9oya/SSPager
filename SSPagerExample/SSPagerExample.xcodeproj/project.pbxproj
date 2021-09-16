@@ -10,6 +10,7 @@
 		BF08E60526F05EF0008BF950 /* SSPager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF29B9F726EC99DC005A2509 /* SSPager.framework */; };
 		BF08E60626F05EF0008BF950 /* SSPager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF29B9F726EC99DC005A2509 /* SSPager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF08E60A26F18D22008BF950 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF08E60926F18D22008BF950 /* ViewController.swift */; };
+		BF08E60F26F2DB0E008BF950 /* CustomPagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF08E60E26F2DB0E008BF950 /* CustomPagerCell.swift */; };
 		BF29BA0526ED759C005A2509 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29BA0426ED759C005A2509 /* BannerViewController.swift */; };
 		BF29BA0726ED7602005A2509 /* CenteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29BA0626ED7602005A2509 /* CenteredViewController.swift */; };
 		BFEE607E26EC834500885D68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEE607D26EC834500885D68 /* AppDelegate.swift */; };
@@ -41,6 +42,7 @@
 		89DA30D3C6774B9A918A776F /* Pods_SSPagerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSPagerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F174953BC2F5FD053B64E1 /* Pods-SSPagerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSPagerExample.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-SSPagerExample/Pods-SSPagerExample.debug.xcconfig"; sourceTree = "<group>"; };
 		BF08E60926F18D22008BF950 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF08E60E26F2DB0E008BF950 /* CustomPagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagerCell.swift; sourceTree = "<group>"; };
 		BF29B9F426EC99DC005A2509 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF29B9F526EC99DC005A2509 /* RxRelay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxRelay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF29B9F626EC99DC005A2509 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF08E60D26F2DAF0008BF950 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BF08E60E26F2DB0E008BF950 /* CustomPagerCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		BF29B9F326EC99DC005A2509 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		BFEE607C26EC834500885D68 /* SSPagerExample */ = {
 			isa = PBXGroup;
 			children = (
+				BF08E60D26F2DAF0008BF950 /* Cells */,
 				BFEE607D26EC834500885D68 /* AppDelegate.swift */,
 				BFEE607F26EC834500885D68 /* SceneDelegate.swift */,
 				BFEE608126EC834500885D68 /* BasicViewController.swift */,
@@ -247,6 +258,7 @@
 			files = (
 				BF29BA0526ED759C005A2509 /* BannerViewController.swift in Sources */,
 				BFEE608226EC834500885D68 /* BasicViewController.swift in Sources */,
+				BF08E60F26F2DB0E008BF950 /* CustomPagerCell.swift in Sources */,
 				BF29BA0726ED7602005A2509 /* CenteredViewController.swift in Sources */,
 				BFEE609226EC83F200885D68 /* RxBasicViewController.swift in Sources */,
 				BF08E60A26F18D22008BF950 /* ViewController.swift in Sources */,

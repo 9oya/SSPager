@@ -15,7 +15,7 @@ public enum PagerViewCellShadow {
                 offset: CGSize)
 }
 
-public class SSPagerViewCell: UICollectionViewCell {
+open class SSPagerViewCell: UICollectionViewCell {
     
     public var shadowType: PagerViewCellShadow = .none {
         didSet {
@@ -34,11 +34,6 @@ public class SSPagerViewCell: UICollectionViewCell {
                 layer.shadowOffset = offset
             }
         }
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        self.clipsToBounds = false
     }
     
 }

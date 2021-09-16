@@ -67,19 +67,27 @@ public class SSPagerView: UIView {
     // MARK: Private properties
     private var ssPagerViewLayout: SSPagerViewLayout!
     private var ssPagerCollectionView: SSPagerCollectionView!
-    private var numberOfItems: Int = 0
+    private var numberOfItems: Int = 0 {
+        didSet {
+            if numberOfItems > 0 {
+                self.infiniteItemCnt = numberOfItems * 10
+            }
+        }
+    }
     private var numberOfSections: Int = 1
     private var dequeingSection = 0
     private var timer: Timer?
+    private var hasScrolledToCenter: Bool = false
+    private var infiniteItemCnt: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupCollectionView()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        setupCollectionView()
     }
     
     open override var backgroundColor: UIColor? {
@@ -100,7 +108,7 @@ public class SSPagerView: UIView {
         self.ssPagerViewLayout.invalidateLayout()
     }
     
-    private func commonInit() {
+    private func setupCollectionView() {
         
         ssPagerViewLayout = SSPagerViewLayout()
         ssPagerViewLayout.minimumInteritemSpacing = interitemSpacing
@@ -174,7 +182,7 @@ extension SSPagerView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         /// If the iOS version is lower than 14.5`return Int.max` is buggy
-        return isInfinite ? 9*100000 : numberOfItems
+        return isInfinite ? infiniteItemCnt : numberOfItems
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -217,6 +225,20 @@ extension SSPagerView: UICollectionViewDelegate {
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if timer == nil {
             startTimer()
+        }
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if isInfinite {
+            if !hasScrolledToCenter {
+                // Scroll to the center only once when initializing.
+                scrollWithoutAnimation(to: infiniteItemCnt/2)
+                hasScrolledToCenter = true
+            }
+            if indexPath.item >= infiniteItemCnt-1 || indexPath.item <= 1 {
+                // When the first and last index is reached
+                scrollWithoutAnimation(to: infiniteItemCnt/2)
+            }
         }
     }
 }
@@ -317,4 +339,10 @@ extension SSPagerView {
         self.timer = nil
     }
     
+    private func scrollWithoutAnimation(to index: Int) {
+        ssPagerCollectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                           at: .centeredHorizontally,
+                                           animated: false)
+        currentIndex = CGFloat(index)
+    }
 }
