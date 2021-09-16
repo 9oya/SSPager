@@ -28,14 +28,15 @@ class BasicViewController: UIViewController {
             pagerView.itemSize = CGSize(width: cellWidth,
                                         height: cellHeight)
             pagerView.contentsInset = UIEdgeInsets(top: 10,
-                                                   left: 20,
+                                                   left: 40,
                                                    bottom: 10,
-                                                   right: 20)
+                                                   right: 0)
              pagerView.isInfinite = true
             // pagerView.automaticSlidingInterval = 1.0
             pagerView.pagingMode = .scrollable
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
+            pagerView.register(CustomPagerCell.self, forCellWithReuseIdentifier: String(describing: CustomPagerCell.self))
             
             pagerView.dataSource = self
             pagerView.delegate = self
@@ -62,8 +63,7 @@ class BasicViewController: UIViewController {
             pagerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             pagerView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             pagerView.heightAnchor.constraint(equalToConstant: cellHeight+20)
-        ]
-        + [
+        ] + [
             pageControl.centerXAnchor.constraint(equalTo: pagerView.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: pagerView.bottomAnchor, constant: -20)
         ]
@@ -86,11 +86,16 @@ extension BasicViewController: SSPagerViewDataSource {
     }
     
     func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
-        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: String(describing: SSPagerViewCell.self), at: index) as? SSPagerViewCell else {
+//        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: String(describing: SSPagerViewCell.self), at: index) as? SSPagerViewCell else {
+//            fatalError()
+//        }
+        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: String(describing: CustomPagerCell.self), at: index) as? CustomPagerCell else {
             fatalError()
         }
-        cell.alpha = 0.5
-        cell.backgroundColor = itemColors[index]
+//        cell.alpha = 0.5
+        cell.backgroundColor = .systemGray6
+        cell.titleLabel.text = "Hello"
+//        cell.titleLabel.textColor = itemColors[index]
         return cell
     }
 }

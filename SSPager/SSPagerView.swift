@@ -39,9 +39,10 @@ public class SSPagerView: UIView {
         }
     }
     
-    public var interitemSpacing: CGFloat = 20 {
+    public var interitemSpacing: CGFloat = 0 {
         didSet {
             self.ssPagerViewLayout.minimumInteritemSpacing = interitemSpacing
+            self.ssPagerViewLayout.minimumLineSpacing = interitemSpacing
             self.ssPagerViewLayout.invalidateLayout()
         }
     }
@@ -66,19 +67,27 @@ public class SSPagerView: UIView {
     // MARK: Private properties
     private var ssPagerViewLayout: SSPagerViewLayout!
     private var ssPagerCollectionView: SSPagerCollectionView!
-    private var numberOfItems: Int = 0
+    private var numberOfItems: Int = 0 {
+        didSet {
+            if numberOfItems > 0 {
+                self.infiniteItemCnt = numberOfItems * 10
+            }
+        }
+    }
     private var numberOfSections: Int = 1
     private var dequeingSection = 0
     private var timer: Timer?
+    private var hasScrolledToCenter: Bool = false
+    private var infiniteItemCnt: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        setupCollectionView()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        setupCollectionView()
     }
     
     open override var backgroundColor: UIColor? {
@@ -99,7 +108,7 @@ public class SSPagerView: UIView {
         self.ssPagerViewLayout.invalidateLayout()
     }
     
-    private func commonInit() {
+    private func setupCollectionView() {
         
         ssPagerViewLayout = SSPagerViewLayout()
         ssPagerViewLayout.minimumInteritemSpacing = interitemSpacing
@@ -172,8 +181,8 @@ extension SSPagerView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        /// `return isInfinite ? Int.max : numberOfItems` is buggable at lowwer version of the iOS 14.5
-        return isInfinite ? 9*100000 : numberOfItems
+        /// If the iOS version is lower than 14.5`return Int.max` is buggy
+        return isInfinite ? infiniteItemCnt : numberOfItems
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -192,6 +201,10 @@ extension SSPagerView: UICollectionViewDelegate {
         delegate?.pagerViewDidSelectPage?(at: indexPath.item % numberOfItems)
     }
     
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelTimer()
+    }
+    
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard let layout = self.ssPagerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
@@ -207,6 +220,26 @@ extension SSPagerView: UICollectionViewDelegate {
         targetContentOffset.pointee = offsetOfNextPage
         
         delegate?.pagerViewWillEndDragging?(scrollView, targetIndex: Int(idxOfNextPage))
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if timer == nil {
+            startTimer()
+        }
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if isInfinite {
+            if !hasScrolledToCenter {
+                // Scroll to the center only once when initializing.
+                scrollWithoutAnimation(to: infiniteItemCnt/2)
+                hasScrolledToCenter = true
+            }
+            if indexPath.item >= infiniteItemCnt-1 || indexPath.item <= 1 {
+                // When the first and last index is reached
+                scrollWithoutAnimation(to: infiniteItemCnt/2)
+            }
+        }
     }
 }
 
@@ -271,17 +304,23 @@ extension SSPagerView {
                        y: -scrollView.contentInset.top)
     }
     
-    fileprivate func startTimer() {
+    private func startTimer() {
         guard self.automaticSlidingInterval > 0 && self.timer == nil else {
             return
         }
-        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.automaticSlidingInterval), target: self, selector: #selector(self.flipNext(sender:)), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.automaticSlidingInterval),
+                                          target: self,
+                                          selector: #selector(self.flipNext(sender:)),
+                                          userInfo: nil,
+                                          repeats: true)
         RunLoop.current.add(self.timer!, forMode: .common)
     }
     
     @objc
-    fileprivate func flipNext(sender: Timer?) {
-        guard let _ = self.superview, let _ = self.window, self.numberOfItems > 0 else {
+    private func flipNext(sender: Timer?) {
+        guard let _ = self.superview,
+              let _ = self.window,
+              self.numberOfItems > 0 else {
             return
         }
         let contentOffset: CGPoint = {
@@ -292,7 +331,7 @@ extension SSPagerView {
         self.ssPagerCollectionView.setContentOffset(contentOffset, animated: true)
     }
     
-    fileprivate func cancelTimer() {
+    private func cancelTimer() {
         guard self.timer != nil else {
             return
         }
@@ -300,4 +339,10 @@ extension SSPagerView {
         self.timer = nil
     }
     
+    private func scrollWithoutAnimation(to index: Int) {
+        ssPagerCollectionView.scrollToItem(at: IndexPath(item: index, section: 0),
+                                           at: .centeredHorizontally,
+                                           animated: false)
+        currentIndex = CGFloat(index)
+    }
 }
