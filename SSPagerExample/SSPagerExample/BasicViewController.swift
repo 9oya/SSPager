@@ -93,7 +93,8 @@ extension BasicViewController: SSPagerViewDataSource {
             fatalError()
         }
 //        cell.alpha = 0.5
-        cell.backgroundColor = .systemGray6
+//        cell.backgroundColor = .systemGray6
+        cell.backgroundColor = itemColors[index]
         cell.titleLabel.text = "Hello"
 //        cell.titleLabel.textColor = itemColors[index]
         return cell

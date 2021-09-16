@@ -340,9 +340,11 @@ extension SSPagerView {
     }
     
     private func scrollWithoutAnimation(to index: Int) {
-        ssPagerCollectionView.scrollToItem(at: IndexPath(item: index, section: 0),
-                                           at: .centeredHorizontally,
-                                           animated: false)
+        let nextOffset = nextOffset(scrollView: ssPagerCollectionView,
+                                    idxOfNextPage: CGFloat(index),
+                                    widthPerPage: pageWidth(layout: ssPagerViewLayout))
         currentIndex = CGFloat(index)
+        ssPagerCollectionView.setContentOffset(nextOffset, animated: false)
+        delegate?.pagerViewWillEndDragging?(ssPagerCollectionView, targetIndex: index)
     }
 }
