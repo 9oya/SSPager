@@ -12,7 +12,7 @@ class BasicViewController: UIViewController {
     
     var pagerView: SSPagerView!
     var pageControl: UIPageControl!
-    let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.gray, UIColor.gray, UIColor.gray, UIColor.gray]
+    let itemColors = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.gray, UIColor.black]
     
     let cellHeight: CGFloat = 300
 
@@ -33,7 +33,7 @@ class BasicViewController: UIViewController {
                                                    right: 0)
              pagerView.isInfinite = true
             // pagerView.automaticSlidingInterval = 1.0
-            pagerView.pagingMode = .scrollable
+            pagerView.pagingMode = .oneStep
             
             pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
             pagerView.register(CustomPagerCell.self, forCellWithReuseIdentifier: String(describing: CustomPagerCell.self))
