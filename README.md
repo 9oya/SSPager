@@ -64,7 +64,7 @@ func numberOfItems(_ pagerView: SSPagerView) -> Int
 func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell
 ```
 
-### Paging
+### Paging Option
 
 ```swift
 pagerView.interitemSpacing = 20.0
@@ -79,7 +79,7 @@ pagerView.automaticSlidingInterval = 2.0
 ```
 
 ```swift
-pagerView.pagingMode = .oneStepPaging // .scrollable
+pagerView.pagingMode = .oneStep // .scrollable .disable
 ```
 
 ```swift

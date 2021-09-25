@@ -235,16 +235,16 @@ extension SSPagerView: UICollectionViewDelegate {
         let index = currentIndex(offset: scrollView.contentOffset,
                                  inset: scrollView.contentInset,
                                  widthPerPage: pageWidth(layout: ssPagerViewLayout))
-        let currIndex = Int(round(index))
-        let midSartIdx = multiple/2
-        let midNextIdx = (numberOfItems*midSartIdx)+(currIndex%numberOfItems)
-        if currIndex <= (numberOfItems*midSartIdx)-1 {
+        let currIdx = Int(round(index))
+        let midStartIdx = multiple/2
+        let midNextIdx = (numberOfItems*midStartIdx)+(currIdx%numberOfItems)
+        if currIdx <= (numberOfItems*midStartIdx)-1 {
             /**
                ❏ ❏ ◼︎   ❏ ❏ ❏  ❏ ❏ ❏
              -> ❏ ❏ ❏   ❏ ❏ ◼︎  ❏ ❏ ❏
              */
             scrollWithoutAnimation(to: midNextIdx)
-        } else if currIndex >= (numberOfItems*midSartIdx)+numberOfItems {
+        } else if currIdx >= (numberOfItems*midStartIdx)+numberOfItems {
             /**
                ❏ ❏ ❏   ❏ ❏ ❏  ◼︎ ❏ ❏
              -> ❏ ❏ ❏   ◼︎ ❏ ❏  ❏ ❏ ❏
