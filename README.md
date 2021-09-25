@@ -120,9 +120,11 @@ pod 'SSPager/Rx', '~> 1.0.0'
 ```
 
 ```swift
-// You don't need to set...
-// pagerView.dataSource = self
-// pagerView.delegate = self
+/* 
+You don't need to set delegate and datasource
+`pagerView.dataSource = self`
+`pagerView.delegate = self`
+*/
 ```
 
 ```swift
