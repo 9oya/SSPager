@@ -56,6 +56,10 @@ pagerView.dataSource = self
 pagerView.delegate = self
 ```
 
+```swift
+pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: "SSPagerViewCell"))
+```
+
 ### DataSource
 
 ```swift
@@ -128,7 +132,7 @@ You don't need to set delegate and datasource
 ```
 
 ```swift
-pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: String(describing: SSPagerViewCell.self))
+pagerView.register(SSPagerViewCell.self, forCellWithReuseIdentifier: "SSPagerViewCell")
 ```
 
 #### Binding:
