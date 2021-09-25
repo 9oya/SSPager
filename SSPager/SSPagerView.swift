@@ -22,8 +22,9 @@ public protocol SSPagerViewDelegate {
 }
 
 public enum SSPagingMode {
+    case oneStep
     case scrollable
-    case oneStepPaging
+    case disable
 }
 
 public class SSPagerView: UIView {
@@ -61,16 +62,17 @@ public class SSPagerView: UIView {
     }
     
     public var isInfinite: Bool = false
-    public var pagingMode: SSPagingMode = .oneStepPaging
+    public var pagingMode: SSPagingMode = .oneStep
     public var currentIndex: CGFloat = 0
     
     // MARK: Private properties
     private var ssPagerViewLayout: SSPagerViewLayout!
     private var ssPagerCollectionView: SSPagerCollectionView!
+    private let multiple = 7
     private var numberOfItems: Int = 0 {
         didSet {
             if numberOfItems > 0 {
-                self.infiniteItemCnt = numberOfItems * 10
+                self.infiniteItemCnt = numberOfItems*multiple
             }
         }
     }
@@ -228,18 +230,36 @@ extension SSPagerView: UICollectionViewDelegate {
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if isInfinite {
-            if !hasScrolledToCenter {
-                // Scroll to the center only once when initializing.
-                scrollWithoutAnimation(to: infiniteItemCnt/2)
-                hasScrolledToCenter = true
-            }
-            if indexPath.item >= infiniteItemCnt-1 || indexPath.item <= 1 {
-                // When the first and last index is reached
-                scrollWithoutAnimation(to: infiniteItemCnt/2)
-            }
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard isInfinite else { return }
+        let index = currentIndex(offset: scrollView.contentOffset,
+                                 inset: scrollView.contentInset,
+                                 widthPerPage: pageWidth(layout: ssPagerViewLayout))
+        let currIndex = Int(round(index))
+        let midSartIdx = multiple/2
+        let midNextIdx = (numberOfItems*midSartIdx)+(currIndex%numberOfItems)
+        if currIndex <= (numberOfItems*midSartIdx)-1 {
+            /**
+               ❏ ❏ ◼︎   ❏ ❏ ❏  ❏ ❏ ❏
+             -> ❏ ❏ ❏   ❏ ❏ ◼︎  ❏ ❏ ❏
+             */
+            scrollWithoutAnimation(to: midNextIdx)
+        } else if currIndex >= (numberOfItems*midSartIdx)+numberOfItems {
+            /**
+               ❏ ❏ ❏   ❏ ❏ ❏  ◼︎ ❏ ❏
+             -> ❏ ❏ ❏   ◼︎ ❏ ❏  ❏ ❏ ❏
+             */
+            scrollWithoutAnimation(to: midNextIdx)
         }
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard isInfinite && !hasScrolledToCenter else {
+            return
+        }
+        // Scroll to the center only once when initializing.
+        scrollWithoutAnimation(to: numberOfItems * (multiple/2))
+        hasScrolledToCenter = true
     }
 }
 
@@ -252,6 +272,14 @@ extension SSPagerView {
         return layout.itemSize.width + layout.minimumLineSpacing
     }
     
+    /// Calculate the current index
+    private func currentIndex(offset: CGPoint,
+                              inset: UIEdgeInsets,
+                              widthPerPage: CGFloat) -> CGFloat {
+        let index = (offset.x + inset.left) / widthPerPage
+        return index
+    }
+    
     /// Calculate the index of the next page using the scrollView offset.
     private func nextIndex(scrollView: UIScrollView,
                            offset: CGPoint,
@@ -259,7 +287,9 @@ extension SSPagerView {
                            widthPerPage: CGFloat) -> CGFloat {
         let contentOffset = scrollView.contentOffset
         let contentInset = scrollView.contentInset
-        let index = (offset.x + contentInset.left) / widthPerPage
+        let index = currentIndex(offset: offset,
+                                 inset: contentInset,
+                                 widthPerPage: widthPerPage)
         var roundedIndex = round(index)
         
         // Make scrolling smoother.
@@ -273,7 +303,7 @@ extension SSPagerView {
         
         // Apply paging mode.
         switch pagingMode {
-        case .oneStepPaging:
+        case .oneStep:
             if currentIndex > roundedIndex {
                 currentIndex -= 1
                 roundedIndex = currentIndex
@@ -281,7 +311,7 @@ extension SSPagerView {
                 currentIndex += 1
                 roundedIndex = currentIndex
             }
-        case .scrollable:
+        case .scrollable, .disable:
             break
         }
         
@@ -329,6 +359,7 @@ extension SSPagerView {
                               widthPerPage: pageWidth(layout: ssPagerViewLayout))
         }()
         self.ssPagerCollectionView.setContentOffset(contentOffset, animated: true)
+        self.scrollViewDidEndDecelerating(ssPagerCollectionView)
     }
     
     private func cancelTimer() {
