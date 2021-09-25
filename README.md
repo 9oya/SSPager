@@ -59,9 +59,9 @@ pagerView.delegate = self
 ### DataSource
 
 ```swift
-func numberOfItems(_ pagerView: SSPagerView) -> Int
+func numberOfPages(_ pagerView: SSPagerView) -> Int
 
-func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell
+func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell
 ```
 
 ### Paging Option
