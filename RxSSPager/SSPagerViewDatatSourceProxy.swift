@@ -17,12 +17,12 @@ private let ssPagerViewDataSourceNotSet = SSPagerViewDataSourceNotSet()
 
 private final class SSPagerViewDataSourceNotSet: NSObject,
                                                  SSPagerViewDataSource {
-    func numberOfItems(_ pagerView: SSPagerView) -> Int {
+    func numberOfPages(_ pagerView: SSPagerView) -> Int {
         return 0
     }
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-    func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+    func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell {
         rxAbstractMethod(message: dataSourceNotSet)
     }
     
@@ -49,11 +49,11 @@ public class RxSSPagerViewDataSourceProxy:
     
     private weak var _requiredMethodsDataSource: SSPagerViewDataSource? = ssPagerViewDataSourceNotSet
     
-    public func numberOfItems(_ pagerView: SSPagerView) -> Int {
-        return (_requiredMethodsDataSource?.numberOfItems(pagerView))!
+    public func numberOfPages(_ pagerView: SSPagerView) -> Int {
+        return (_requiredMethodsDataSource?.numberOfPages(pagerView))!
     }
     
-    public func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+    public func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell {
         (_requiredMethodsDataSource?.pagerView(pagerView, cellForItemAt: index))!
     }
     

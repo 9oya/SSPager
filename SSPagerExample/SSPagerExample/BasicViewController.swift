@@ -81,11 +81,11 @@ extension BasicViewController: SSPagerViewDataSource {
     
     // MARK: SSPagerViewDataSource
     
-    func numberOfItems(_ pagerView: SSPagerView) -> Int {
+    func numberOfPages(_ pagerView: SSPagerView) -> Int {
         itemColors.count
     }
     
-    func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+    func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell {
 //        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: String(describing: SSPagerViewCell.self), at: index) as? SSPagerViewCell else {
 //            fatalError()
 //        }

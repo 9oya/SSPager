@@ -15,15 +15,15 @@ class _RxSSPagerViewReactiveArrayDataSource: NSObject,
         0
     }
     
-    func numberOfItems(_ pagerView: SSPagerView) -> Int {
+    func numberOfPages(_ pagerView: SSPagerView) -> Int {
         _numberOfItems(pagerView)
     }
     
-    func _pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+    func _pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell {
         rxAbstractMethod()
     }
     
-    func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+    func pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell {
         _pagerView(pagerView, cellForItemAt: index)
     }
     
@@ -79,7 +79,7 @@ class RxSSPagerViewReactiveArrayDataSource<Element>:
         itemModels?.count ?? 0
     }
     
-    override func _pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
+    override func _pagerView(_ pagerView: SSPagerView, cellForItemAt index: Int) -> SSPagerViewCell {
         cellFactory(pagerView, index, itemModels![index])
     }
     
