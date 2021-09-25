@@ -83,24 +83,15 @@ pagerView.pagingMode = .oneStep // .scrollable .disable
 ```
 
 ```swift
-let cellWidth = view.frame.width * 0.7
-let cellHeight = view.frame.height * 0.7  
-pagerView.itemSize = CGSize(width: cellWidth,
-                            height: cellHeight)
+pagerView.itemSize = CGSize(width: cellWidth, // view.frame.width * 0.7
+                            height: cellHeight) // view.frame.height * 0.7 
 ```
 
 ```swift
-let cellWidth = view.frame.width * 0.7
-let cellHeight = view.frame.height * 0.7
 pagerView.contentsInset = UIEdgeInsets(top: 100,
                                        left: (view.bounds.width - cellWidth) / 2,
                                        bottom: 100,
                                        right: (view.bounds.width - cellWidth) / 2)
-
-// pagerView.contentsInset = UIEdgeInsets(top: 100,
-//                                        left: 20,
-//                                        bottom: 100,
-//                                        right: 20)
 ```
 
 ### Control
