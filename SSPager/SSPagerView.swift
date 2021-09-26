@@ -68,11 +68,11 @@ public class SSPagerView: UIView {
     // MARK: Private properties
     private var ssPagerViewLayout: SSPagerViewLayout!
     private var ssPagerCollectionView: SSPagerCollectionView!
-    private let multiple = 7
+    private let multipleOfSet = 7
     private var numberOfItems: Int = 0 {
         didSet {
             if numberOfItems > 0 {
-                self.infiniteItemCnt = numberOfItems*multiple
+                self.infiniteItemCnt = numberOfItems*multipleOfSet
             }
         }
     }
@@ -236,20 +236,22 @@ extension SSPagerView: UICollectionViewDelegate {
                                  inset: scrollView.contentInset,
                                  widthPerPage: pageWidth(layout: ssPagerViewLayout))
         let currIdx = Int(round(index))
-        let midStartIdx = multiple/2
-        let midNextIdx = (numberOfItems*midStartIdx)+(currIdx%numberOfItems)
-        if currIdx <= (numberOfItems*midStartIdx)-1 {
+        let midSet = multipleOfSet/2
+        let nextIdxOfMid = (numberOfItems*midSet)+(currIdx%numberOfItems)
+        if currIdx <= (numberOfItems*midSet)-1 {
             /**
+                cp1        mid     cp2
                ❏ ❏ ◼︎   ❏ ❏ ❏  ❏ ❏ ❏
              -> ❏ ❏ ❏   ❏ ❏ ◼︎  ❏ ❏ ❏
              */
-            scrollWithoutAnimation(to: midNextIdx)
-        } else if currIdx >= (numberOfItems*midStartIdx)+numberOfItems {
+            scrollWithoutAnimation(to: nextIdxOfMid)
+        } else if currIdx >= (numberOfItems*midSet)+numberOfItems {
             /**
+                cp1        mid     cp2
                ❏ ❏ ❏   ❏ ❏ ❏  ◼︎ ❏ ❏
              -> ❏ ❏ ❏   ◼︎ ❏ ❏  ❏ ❏ ❏
              */
-            scrollWithoutAnimation(to: midNextIdx)
+            scrollWithoutAnimation(to: nextIdxOfMid)
         }
     }
     
@@ -257,8 +259,11 @@ extension SSPagerView: UICollectionViewDelegate {
         guard isInfinite && !hasScrolledToCenter else {
             return
         }
-        // Scroll to the center only once when initializing.
-        scrollWithoutAnimation(to: numberOfItems * (multiple/2))
+        /* Scroll to the first idx of mid set only once when initializing.
+            cp1     mid    cp2
+           ❏ ❏ ❏   ◼︎ ❏ ❏  ❏ ❏ ❏
+         */
+        scrollWithoutAnimation(to: numberOfItems * (multipleOfSet/2))
         hasScrolledToCenter = true
     }
 }
