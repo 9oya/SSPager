@@ -143,8 +143,8 @@ extension SSPagerView {
     public func dequeueReusableCell(withReuseIdentifier identifier: String, at index: Int) -> UICollectionViewCell {
         let indexPath = IndexPath(item: index, section: self.dequeingSection)
         let cell = self.ssPagerCollectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        guard cell.isKind(of: UICollectionViewCell.self) else {
-            fatalError("Cell class must be subclass of FSPagerViewCell")
+        guard cell.isKind(of: SSPagerViewCell.self) else {
+            fatalError("Cell class must be subclass of SSPagerViewCell")
         }
         return cell
     }
