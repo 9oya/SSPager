@@ -239,17 +239,17 @@ extension SSPagerView: UICollectionViewDelegate {
         let midSet = multipleOfSet/2
         let nextIdxOfMid = (numberOfItems*midSet)+(currIdx%numberOfItems)
         if currIdx <= (numberOfItems*midSet)-1 {
-            /**
-                cp1        mid     cp2
+            /*
+                cp1     mid    cp2
                ❏ ❏ ◼︎   ❏ ❏ ❏  ❏ ❏ ❏
-             -> ❏ ❏ ❏   ❏ ❏ ◼︎  ❏ ❏ ❏
+            -> ❏ ❏ ❏   ❏ ❏ ◼︎  ❏ ❏ ❏
              */
             scrollWithoutAnimation(to: nextIdxOfMid)
         } else if currIdx >= (numberOfItems*midSet)+numberOfItems {
-            /**
-                cp1        mid     cp2
+            /*
+                cp1     mid    cp2
                ❏ ❏ ❏   ❏ ❏ ❏  ◼︎ ❏ ❏
-             -> ❏ ❏ ❏   ◼︎ ❏ ❏  ❏ ❏ ❏
+            -> ❏ ❏ ❏   ◼︎ ❏ ❏  ❏ ❏ ❏
              */
             scrollWithoutAnimation(to: nextIdxOfMid)
         }

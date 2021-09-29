@@ -14,7 +14,6 @@ class SSPagerViewLayout: UICollectionViewFlowLayout {
     }
     
     override func prepare() {
-        
         scrollDirection = .horizontal
     }
     

@@ -9,7 +9,6 @@ import UIKit
 
 class SSPagerCollectionView: UICollectionView {
     
-    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.commonInit()
