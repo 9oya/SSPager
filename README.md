@@ -10,6 +10,8 @@ Super Simple Pager
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the SSPagerExample directory first.
+### Example projects
+- [AppStoreClone](https://github.com/9oya/StoreSearchSample)
 
 ## Installation
 
