@@ -5,7 +5,6 @@
 [![Version](https://img.shields.io/cocoapods/v/SSPager.svg?style=plastic)](https://github.com/9oya/SSPager)
 [![SPM compatible](https://img.shields.io/badge/SPM-compatible-FF9966.svg?style=plastic)](https://swift.org/package-manager/)
 ![Github license](https://img.shields.io/github/license/9oya/SSPager?style=plastic)
-
 ![Github issues](https://img.shields.io/github/issues/9oya/SSPager?style=plastic)
 ![Github forks](https://img.shields.io/github/forks/9oya/SSPager?style=plastic)
 ![Github stars](https://img.shields.io/github/stars/9oya/SSPager?style=plastic)
